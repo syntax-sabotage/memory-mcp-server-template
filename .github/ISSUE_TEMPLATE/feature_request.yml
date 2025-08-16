@@ -1,0 +1,199 @@
+name: Feature Request
+description: Suggest an idea or enhancement for VPS Memory MCP Server
+title: "[Feature] "
+labels: ["enhancement", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest a new feature! Please fill out the form below with as much detail as possible.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Feature Summary
+      description: A clear and concise description of the feature you'd like to see.
+      placeholder: Briefly describe the feature...
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: |
+        What problem does this feature solve? 
+        Is your feature request related to a problem you're experiencing?
+      placeholder: |
+        I'm frustrated when...
+        It would be helpful if...
+        Currently there's no way to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: A clear and concise description of what you want to happen.
+      placeholder: Describe your ideal solution...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feature Category
+      description: What type of feature is this?
+      options:
+        - New MCP Tool
+        - Enhancement to existing tool
+        - CLI improvement
+        - Performance optimization
+        - Developer experience
+        - Documentation
+        - Security enhancement
+        - Configuration option
+        - Integration/compatibility
+        - Other (please specify in description)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature to you?
+      options:
+        - Low - Nice to have
+        - Medium - Would be helpful
+        - High - Important for my workflow
+        - Critical - Blocking my usage
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Use Cases
+      description: |
+        Describe specific scenarios where this feature would be useful.
+        Include real-world examples of how you or others would use it.
+      placeholder: |
+        1. When working with large memory datasets...
+        2. For integration with external systems...
+        3. To improve performance in scenarios where...
+
+  - type: textarea
+    id: api-design
+    attributes:
+      label: Proposed API/Interface Design
+      description: |
+        If applicable, suggest how the feature should be exposed.
+        For MCP tools, include the tool schema and expected behavior.
+      render: typescript
+      placeholder: |
+        // Example tool schema
+        {
+          "name": "new_tool_name",
+          "description": "Description of the tool",
+          "inputSchema": {
+            "param1": "string",
+            "param2": "number"
+          }
+        }
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: |
+        Describe any alternative solutions or features you've considered.
+        Are there workarounds available currently?
+      placeholder: |
+        Alternative 1: ...
+        Alternative 2: ...
+        Current workaround: ...
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples from Other Tools
+      description: |
+        Are there similar features in other MCP servers or tools that could serve as inspiration?
+        Include links or references if available.
+      placeholder: |
+        Similar to feature X in project Y...
+        Reference implementation: https://...
+
+  - type: dropdown
+    id: breaking-change
+    attributes:
+      label: Breaking Change
+      description: Would this feature require breaking changes to the existing API?
+      options:
+        - "No - Fully backward compatible"
+        - "Minor - Small breaking changes acceptable"
+        - "Major - Significant breaking changes required"
+        - "Unknown - Need technical review"
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation Considerations
+      description: |
+        Any thoughts on implementation complexity, dependencies, or technical challenges?
+        Are you willing to contribute to the implementation?
+      placeholder: |
+        Implementation complexity: Low/Medium/High
+        Required dependencies: ...
+        Potential challenges: ...
+        Willing to contribute: Yes/No
+
+  - type: textarea
+    id: testing
+    attributes:
+      label: Testing Strategy
+      description: How should this feature be tested? What edge cases should be considered?
+      placeholder: |
+        Unit tests for...
+        Integration tests for...
+        Edge cases to consider...
+
+  - type: textarea
+    id: documentation
+    attributes:
+      label: Documentation Requirements
+      description: What documentation would need to be created or updated?
+      placeholder: |
+        README updates...
+        API documentation...
+        Usage examples...
+        Migration guide (if breaking changes)...
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: |
+        Add any other context, mockups, or examples about the feature request.
+        Screenshots, diagrams, or related issues are helpful.
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched for existing feature requests before creating this one
+          required: true
+        - label: I have provided a clear description of the problem and proposed solution
+          required: true
+        - label: I understand this feature may not be implemented immediately
+          required: true
+        - label: I am willing to participate in discussions about this feature
+          required: true
+        - label: I would be interested in contributing to the implementation
+          required: false

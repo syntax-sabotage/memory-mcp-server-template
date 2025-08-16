@@ -1,0 +1,166 @@
+name: Bug Report
+description: File a bug report to help us improve VPS Memory MCP Server
+title: "[Bug] "
+labels: ["bug", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the form below with as much detail as possible.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: Describe the bug...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Run command '...'
+        2. Call tool '...'
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen.
+      placeholder: Describe what should have happened...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: A clear and concise description of what actually happened.
+      placeholder: Describe what actually happened...
+    validations:
+      required: true
+
+  - type: textarea
+    id: error
+    attributes:
+      label: Error Message/Stack Trace
+      description: If applicable, add the full error message and stack trace.
+      render: shell
+      placeholder: Paste error message here...
+
+  - type: dropdown
+    id: tool
+    attributes:
+      label: Which MCP tool is affected?
+      options:
+        - memory_search
+        - memory_store
+        - memory_stats
+        - memory_list
+        - memory_health
+        - CLI functionality
+        - Not applicable
+        - Other (please specify in description)
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: VPS Memory MCP Server Version
+      description: What version of the server are you running?
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Node.js Version
+      description: What version of Node.js are you using?
+      placeholder: "18.19.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      options:
+        - Linux
+        - macOS
+        - Windows
+        - Docker
+        - Other (please specify in additional context)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: client
+    attributes:
+      label: MCP Client
+      description: Which MCP client are you using?
+      options:
+        - Claude Code
+        - Claude Desktop
+        - Custom client
+        - Other (please specify in additional context)
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Configuration
+      description: |
+        Please share your configuration (redact sensitive information like API keys).
+        Include environment variables and any relevant settings.
+      render: json
+      placeholder: |
+        {
+          "VPS_MEMORY_BASE_URL": "http://example.com:8080",
+          "VPS_MEMORY_TIMEOUT": "30000"
+        }
+
+  - type: textarea
+    id: minimal-reproduction
+    attributes:
+      label: Minimal Reproduction Example
+      description: |
+        If possible, provide a minimal code example that reproduces the issue.
+        This helps us identify and fix the bug faster.
+      render: typescript
+      placeholder: |
+        // Example code that reproduces the issue
+        import { VPSMemoryClient } from 'vps-memory-mcp-server';
+        // ...
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: |
+        Add any other context about the problem here.
+        Screenshots, network logs, or related issues are helpful.
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched for existing issues before creating this bug report
+          required: true
+        - label: I have provided all the requested information
+          required: true
+        - label: I have redacted any sensitive information (API keys, passwords, etc.)
+          required: true
+        - label: I am willing to test potential fixes
+          required: false
