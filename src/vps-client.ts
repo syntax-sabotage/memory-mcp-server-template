@@ -4,10 +4,10 @@
  */
 
 import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const http = require('http');
+import { VPSConfig, Memory, MemoryStats, HealthStatus, SearchResponse, StoreResponse, VPSMemoryError } from './types.js';
 
-import { VPSConfig, VPSResponse, Memory, MemoryStats, HealthStatus, SearchResponse, StoreResponse, VPSMemoryError } from './types.js';
+const moduleRequire = createRequire(import.meta.url);
+const http = moduleRequire('http');
 
 export class VPSMemoryClient {
   private config: VPSConfig;

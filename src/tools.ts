@@ -4,7 +4,6 @@
  */
 
 import {
-  CallToolRequestSchema,
   CallToolResult,
   Tool
 } from '@modelcontextprotocol/sdk/types.js';
@@ -16,8 +15,7 @@ import {
   MemorySearchInput,
   MemoryStoreInput,
   MemoryListInput,
-  VPSMemoryError,
-  ToolResult
+  VPSMemoryError
 } from './types.js';
 
 export class VPSMemoryTools {
