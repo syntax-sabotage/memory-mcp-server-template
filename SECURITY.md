@@ -1,8 +1,10 @@
 # Security Policy
 
+⚠️ **CRITICAL SECURITY NOTICE**: This repository template contains NO hardcoded credentials or server endpoints. All sensitive configuration MUST be provided via environment variables.
+
 ## Supported Versions
 
-We actively support the following versions of VPS Memory MCP Server with security updates:
+We actively support the following versions of Memory MCP Server Template with security updates:
 
 | Version | Supported          |
 | ------- | ------------------ |

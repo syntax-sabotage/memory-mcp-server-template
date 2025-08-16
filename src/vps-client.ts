@@ -14,12 +14,25 @@ export class VPSMemoryClient {
   private sessionId: string;
 
   constructor(config?: Partial<VPSConfig>) {
+    // SECURITY: All configuration must be provided via environment variables or config parameter
+    // NO hardcoded credentials or server endpoints allowed
+    const baseUrl = config?.baseUrl || process.env.VPS_MEMORY_BASE_URL;
+    const apiKey = config?.apiKey || process.env.VPS_MEMORY_API_KEY;
+    
+    if (!baseUrl) {
+      throw new Error('VPS_MEMORY_BASE_URL environment variable or baseUrl config is required');
+    }
+    
+    if (!apiKey) {
+      throw new Error('VPS_MEMORY_API_KEY environment variable or apiKey config is required');
+    }
+
     this.config = {
-      baseUrl: 'http://185.163.117.155:8080',
-      apiKey: 'cf89c3896dd1f14728b81c7be45e7d30d48e75517deb6e3c22335ff0a1635484',
-      timeout: 30000,
-      retryAttempts: 3,
-      retryDelay: 1000,
+      baseUrl,
+      apiKey,
+      timeout: config?.timeout || parseInt(process.env.VPS_MEMORY_TIMEOUT || '30000'),
+      retryAttempts: config?.retryAttempts || parseInt(process.env.VPS_MEMORY_RETRY_ATTEMPTS || '3'),
+      retryDelay: config?.retryDelay || parseInt(process.env.VPS_MEMORY_RETRY_DELAY || '1000'),
       ...config
     };
     this.sessionId = `mcp-server-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;

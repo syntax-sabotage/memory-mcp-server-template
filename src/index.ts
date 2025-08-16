@@ -38,9 +38,10 @@ class VPSMemoryMCPServer {
     );
 
     // Initialize VPS client with environment-based configuration
+    // SECURITY: All credentials and endpoints MUST be provided via environment variables
     this.client = new VPSMemoryClient({
-      baseUrl: process.env.VPS_MEMORY_BASE_URL || 'http://185.163.117.155:8080',
-      apiKey: process.env.VPS_MEMORY_API_KEY || 'cf89c3896dd1f14728b81c7be45e7d30d48e75517deb6e3c22335ff0a1635484',
+      baseUrl: process.env.VPS_MEMORY_BASE_URL,
+      apiKey: process.env.VPS_MEMORY_API_KEY,
       timeout: parseInt(process.env.VPS_MEMORY_TIMEOUT || '30000'),
       retryAttempts: parseInt(process.env.VPS_MEMORY_RETRY_ATTEMPTS || '3'),
       retryDelay: parseInt(process.env.VPS_MEMORY_RETRY_DELAY || '1000')
@@ -200,9 +201,9 @@ Options:
   --version, -v  Show version information
   --test         Test VPS connection and exit
 
-Environment Variables:
-  VPS_MEMORY_BASE_URL         VPS server base URL (default: http://185.163.117.155:8080)
-  VPS_MEMORY_API_KEY          VPS API key for authentication
+Environment Variables (REQUIRED):
+  VPS_MEMORY_BASE_URL         VPS server base URL (required)
+  VPS_MEMORY_API_KEY          VPS API key for authentication (required)
   VPS_MEMORY_TIMEOUT          Request timeout in ms (default: 30000)
   VPS_MEMORY_RETRY_ATTEMPTS   Retry attempts for failed requests (default: 3)
   VPS_MEMORY_RETRY_DELAY      Delay between retries in ms (default: 1000)

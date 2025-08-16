@@ -1,69 +1,97 @@
-# VPS Memory MCP Server
+# 🛡️ Memory MCP Server Template
 
-[![NPM Version](https://img.shields.io/npm/v/vps-memory-mcp-server.svg)](https://www.npmjs.com/package/vps-memory-mcp-server)
-[![Node.js Version](https://img.shields.io/node/v/vps-memory-mcp-server.svg)](https://nodejs.org/)
-[![Build Status](https://github.com/syntax-sabotage/vps-memory-mcp-server/workflows/CI/badge.svg)](https://github.com/syntax-sabotage/vps-memory-mcp-server/actions)
-[![Code Coverage](https://codecov.io/gh/syntax-sabotage/vps-memory-mcp-server/branch/main/graph/badge.svg)](https://codecov.io/gh/syntax-sabotage/vps-memory-mcp-server)
+[![Node.js Version](https://img.shields.io/node/v/memory-mcp-server-template.svg)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-blue.svg)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-brightgreen.svg)](https://modelcontextprotocol.io/)
+[![Security First](https://img.shields.io/badge/Security-First-red.svg)](./SECURITY.md)
 
-> Professional Model Context Protocol server for VPS memory system with 790+ memories. Provides semantic search, storage, and management capabilities for AI agents.
+> 🔐 **Security-First MCP Server Template** for memory systems. Zero hardcoded credentials, environment-based configuration, production-ready template for memory database integration.
+
+## ⚠️ SECURITY FIRST
+
+**This template contains NO hardcoded credentials, API keys, or server endpoints.** All sensitive configuration must be provided via environment variables. This ensures:
+
+- ✅ No accidental credential exposure in version control
+- ✅ Secure deployment across environments  
+- ✅ Easy credential rotation and management
+- ✅ Production security best practices
 
 ## Overview
 
-VPS Memory MCP Server is a production-ready implementation of the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) that connects AI agents to a powerful memory database containing 790+ contextual memories. It enables sophisticated memory operations including semantic search, intelligent storage, and comprehensive memory management.
+This is a security-first template for building MCP servers that connect to memory systems. The template provides a production-ready implementation of the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) with comprehensive security features, environment-based configuration, and best practices for memory database integration.
 
 ### Key Features
 
-- **🧠 Intelligent Memory Operations**: Semantic search across 790+ memories with similarity matching
-- **💾 Persistent Storage**: Store new memories with automatic metadata enrichment
-- **📊 Analytics & Statistics**: Comprehensive database statistics and health monitoring
-- **🔍 Advanced Search**: Filter by type, threshold, and context with pagination support
-- **⚡ High Performance**: Optimized TypeScript implementation with connection pooling
-- **🛡️ Production Ready**: Comprehensive error handling, validation, and monitoring
-- **🔧 Developer Friendly**: Full TypeScript support with detailed API documentation
+- **🛡️ Security First**: Zero hardcoded credentials, environment-based configuration
+- **🧠 Memory Operations**: Semantic search, storage, and management capabilities  
+- **💾 Flexible Storage**: Configurable memory backend with metadata support
+- **📊 Health Monitoring**: Connection validation and statistics tracking
+- **⚡ Production Ready**: TypeScript, error handling, retry logic, validation
+- **🔧 Developer Friendly**: Complete template with documentation and examples
+- **🔐 Best Practices**: Security guidelines, secret detection, audit-ready
 
 ## Quick Start
 
 ### Installation
 
 ```bash
-# Install via NPM
-npm install -g vps-memory-mcp-server
+# Clone the template
+git clone https://github.com/syntax-sabotage/memory-mcp-server-template.git
+cd memory-mcp-server-template
 
-# Or use with npx
-npx vps-memory-mcp-server --help
+# Install dependencies
+npm install
+
+# Copy environment template
+cp .env.example .env
+
+# Configure your environment variables (see below)
 ```
 
-### Configuration
+### 🔐 Required Configuration
 
-Add to your Claude configuration (`~/.claude.json`):
+**CRITICAL**: You MUST configure these environment variables before use:
 
-```json
-{
-  "mcpServers": {
-    "vps-memory": {
-      "command": "npx",
-      "args": ["vps-memory-mcp-server"],
-      "env": {
-        "VPS_MEMORY_BASE_URL": "http://your-vps-server:8080",
-        "VPS_MEMORY_API_KEY": "your-api-key"
-      }
-    }
-  }
-}
-```
+1. **Copy the environment template:**
+   ```bash
+   cp .env.example .env
+   ```
 
-### Environment Variables
+2. **Edit `.env` with your actual values:**
+   ```bash
+   # REQUIRED: Your memory server configuration
+   VPS_MEMORY_BASE_URL=https://your-secure-memory-server.com
+   VPS_MEMORY_API_KEY=your-actual-api-key-here
+   
+   # OPTIONAL: Performance tuning
+   VPS_MEMORY_TIMEOUT=30000
+   VPS_MEMORY_RETRY_ATTEMPTS=3
+   VPS_MEMORY_RETRY_DELAY=1000
+   ```
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `VPS_MEMORY_BASE_URL` | VPS server base URL | `http://185.163.117.155:8080` |
-| `VPS_MEMORY_API_KEY` | API key for authentication | Required |
-| `VPS_MEMORY_TIMEOUT` | Request timeout (ms) | `30000` |
-| `VPS_MEMORY_RETRY_ATTEMPTS` | Retry attempts for failed requests | `3` |
-| `VPS_MEMORY_RETRY_DELAY` | Delay between retries (ms) | `1000` |
+3. **Add to Claude configuration (`~/.claude.json`):**
+   ```json
+   {
+     "mcpServers": {
+       "memory": {
+         "command": "node",
+         "args": ["dist/index.js"],
+         "cwd": "/path/to/memory-mcp-server-template"
+       }
+     }
+   }
+   ```
+
+### Environment Variables (ALL REQUIRED)
+
+| Variable | Description | Security Notes |
+|----------|-------------|----------------|
+| `VPS_MEMORY_BASE_URL` | Memory server endpoint | Use HTTPS in production |
+| `VPS_MEMORY_API_KEY` | Authentication token | Rotate every 90 days |
+| `VPS_MEMORY_TIMEOUT` | Request timeout (ms) | Default: 30000 |
+| `VPS_MEMORY_RETRY_ATTEMPTS` | Retry attempts | Default: 3 |
+| `VPS_MEMORY_RETRY_DELAY` | Retry delay (ms) | Default: 1000 |
 
 ## Available Tools
 
