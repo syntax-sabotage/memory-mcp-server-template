@@ -1,12 +1,16 @@
 {
   "name": "memory-mcp-server-template",
   "version": "1.0.0",
-  "description": "🛡️ Security-first MCP server template for memory systems. Zero hardcoded credentials, environment-based configuration, production-ready template.",
+  "description": "🚀 Enhanced VPS Memory MCP Server with Multi-Agent Orchestration, Hierarchical Session Management, 3-Tier Conflict Resolution, and Global Pattern Learning. Production-ready orchestrator with Context7 integration.",
   "keywords": [
     "mcp",
     "model-context-protocol",
     "memory",
-    "template",
+    "orchestration",
+    "multi-agent",
+    "conflict-resolution",
+    "session-management",
+    "pattern-learning",
     "security",
     "claude",
     "ai",
@@ -16,7 +20,11 @@
     "ai-agent",
     "context",
     "secure",
-    "production"
+    "production",
+    "context7",
+    "coordination",
+    "ttl",
+    "hierarchical"
   ],
   "homepage": "https://github.com/syntax-sabotage/memory-mcp-server-template#readme",
   "bugs": {

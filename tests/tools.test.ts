@@ -22,13 +22,20 @@ describe('VPSMemoryTools', () => {
     it('should return all available tools', () => {
       const toolList = tools.getTools();
       
-      expect(toolList).toHaveLength(5);
+      expect(toolList).toHaveLength(13);
       expect(toolList.map(t => t.name)).toEqual([
         'memory_search',
         'memory_store',
         'memory_stats',
         'memory_list',
-        'memory_health'
+        'memory_health',
+        'session_create',
+        'session_get',
+        'agent_register',
+        'conflict_resolve',
+        'pattern_learn',
+        'pattern_apply',
+        'orchestration_status'
       ]);
     });
 
@@ -257,6 +264,153 @@ describe('VPSMemoryTools', () => {
       expect(result.isError).toBe(false);
       expect(result.content[0].text).toContain('❌ Memory Server Health Check');
       expect(result.content[0].text).toContain('❌ Disconnected');
+    });
+  });
+
+  describe('orchestration tools', () => {
+    describe('session_create tool', () => {
+      it('should create session successfully', async () => {
+        const result = await tools.executeTool('session_create', {
+          agentRole: 'orchestrator',
+          initialState: { project: 'test' },
+          ttl: 3600,
+          specialization: ['coordination']
+        });
+
+        expect(result.isError).toBe(false);
+        expect(result.content[0].text).toContain('Session Created Successfully!');
+        expect(result.content[0].text).toContain('Role: orchestrator');
+        expect(result.content[0].text).toContain('TTL: 3600 seconds');
+        expect(result.content[0].text).toContain('Status: Active');
+      });
+
+      it('should validate session create input', async () => {
+        const result = await tools.executeTool('session_create', {
+          agentRole: 'invalid_role' // Invalid role
+        });
+
+        expect(result.isError).toBe(true);
+        expect(result.content[0].text).toContain('Invalid input');
+      });
+    });
+
+    describe('session_get tool', () => {
+      it('should retrieve session successfully', async () => {
+        // First create a session
+        const createResult = await tools.executeTool('session_create', {
+          agentRole: 'specialist',
+          initialState: { task: 'analysis' }
+        });
+
+        expect(createResult.isError).toBe(false);
+
+        // Extract session ID from create result (simplified for test)
+        const sessionId = 'test-session-id';
+
+        const getResult = await tools.executeTool('session_get', {
+          sessionId,
+          includeHierarchy: true
+        });
+
+        expect(getResult.isError).toBe(false);
+        expect(getResult.content[0].text).toContain('Session Context Retrieved');
+      });
+
+      it('should handle non-existent session', async () => {
+        const result = await tools.executeTool('session_get', {
+          sessionId: 'non-existent-session'
+        });
+
+        expect(result.isError).toBe(true);
+        expect(result.content[0].text).toContain('Session not found');
+      });
+    });
+
+    describe('agent_register tool', () => {
+      it('should register agent successfully', async () => {
+        const result = await tools.executeTool('agent_register', {
+          agentId: 'test-agent-001',
+          role: 'specialist',
+          specialization: ['database', 'optimization']
+        });
+
+        expect(result.isError).toBe(false);
+        expect(result.content[0].text).toContain('Agent Registered Successfully!');
+        expect(result.content[0].text).toContain('Agent ID: test-agent-001');
+        expect(result.content[0].text).toContain('Role: specialist');
+        expect(result.content[0].text).toContain('database, optimization');
+      });
+    });
+
+    describe('conflict_resolve tool', () => {
+      it('should initiate conflict resolution', async () => {
+        const result = await tools.executeTool('conflict_resolve', {
+          conflictType: 'memory_conflict',
+          involvedItems: ['memory-001', 'memory-002'],
+          severity: 'medium',
+          metadata: { similarity: 0.95 }
+        });
+
+        expect(result.isError).toBe(false);
+        expect(result.content[0].text).toContain('Conflict Resolution Initiated');
+        expect(result.content[0].text).toContain('Type: memory_conflict');
+        expect(result.content[0].text).toContain('Severity: medium');
+      });
+
+      it('should validate conflict resolution input', async () => {
+        const result = await tools.executeTool('conflict_resolve', {
+          conflictType: 'invalid_type',
+          involvedItems: [],
+          severity: 'medium'
+        });
+
+        expect(result.isError).toBe(true);
+        expect(result.content[0].text).toContain('Invalid input');
+      });
+    });
+
+    describe('pattern_learn tool', () => {
+      it('should learn pattern successfully', async () => {
+        const result = await tools.executeTool('pattern_learn', {
+          type: 'workflow',
+          context: { taskType: 'analysis', complexity: 'high' },
+          action: { steps: ['plan', 'execute', 'validate'] },
+          applicableContexts: ['development', 'testing']
+        });
+
+        expect(result.isError).toBe(false);
+        expect(result.content[0].text).toContain('Pattern Learned Successfully!');
+        expect(result.content[0].text).toContain('Type: workflow');
+        expect(result.content[0].text).toContain('Confidence: 50.0%');
+        expect(result.content[0].text).toContain('development, testing');
+      });
+    });
+
+    describe('pattern_apply tool', () => {
+      it('should apply pattern successfully', async () => {
+        const result = await tools.executeTool('pattern_apply', {
+          patternId: 'test-pattern-001',
+          context: { taskType: 'analysis', currentPhase: 'planning' }
+        });
+
+        expect(result.isError).toBe(false);
+        expect(result.content[0].text).toContain('Pattern Application');
+        expect(result.content[0].text).toContain('Pattern ID: test-pattern-001');
+      });
+    });
+
+    describe('orchestration_status tool', () => {
+      it('should return orchestration status', async () => {
+        const result = await tools.executeTool('orchestration_status', {});
+
+        expect(result.isError).toBe(false);
+        expect(result.content[0].text).toContain('Orchestration System Status');
+        expect(result.content[0].text).toContain('Multi-Agent Coordination: Active');
+        expect(result.content[0].text).toContain('Session Management: Hierarchical TTL enabled');
+        expect(result.content[0].text).toContain('Conflict Resolution: 3-tier system operational');
+        expect(result.content[0].text).toContain('Pattern Learning: Global framework active');
+        expect(result.content[0].text).toContain('8 new tools available');
+      });
     });
   });
 });
