@@ -1,12 +1,13 @@
-# 🛡️ Memory MCP Server Template
+# 🚀 Enhanced VPS Memory MCP Server with Multi-Agent Orchestration
 
 [![Node.js Version](https://img.shields.io/node/v/memory-mcp-server-template.svg)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3+-blue.svg)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-brightgreen.svg)](https://modelcontextprotocol.io/)
 [![Security First](https://img.shields.io/badge/Security-First-red.svg)](./SECURITY.md)
+[![Orchestration Ready](https://img.shields.io/badge/Orchestration-Ready-purple.svg)](#orchestration-features)
 
-> 🔐 **Security-First MCP Server Template** for memory systems. Zero hardcoded credentials, environment-based configuration, production-ready template for memory database integration.
+> 🔐 **Enhanced Security-First MCP Server** with multi-agent orchestration, hierarchical session management, 3-tier conflict resolution, and global pattern learning. Production-ready memory system with advanced coordination capabilities.
 
 ## ⚠️ SECURITY FIRST
 
@@ -30,6 +31,17 @@ This is a security-first template for building MCP servers that connect to memor
 - **⚡ Production Ready**: TypeScript, error handling, retry logic, validation
 - **🔧 Developer Friendly**: Complete template with documentation and examples
 - **🔐 Best Practices**: Security guidelines, secret detection, audit-ready
+
+### Orchestration Features
+
+- **🎭 Multi-Agent Coordination**: Register agents with specialized roles and track performance
+- **🏗️ Hierarchical Sessions**: Create parent-child session relationships with automatic TTL management
+- **⚖️ 3-Tier Conflict Resolution**: Automatic resolution → Agent mediation → Human escalation
+- **🧩 Global Pattern Learning**: Reinforcement learning for workflows, resolutions, and optimizations
+- **🔄 Session Management**: TTL-based session cleanup with state inheritance
+- **📈 Performance Tracking**: Agent performance metrics and coordination statistics
+- **🚨 Intelligent Alerts**: Context-aware conflict detection and escalation procedures
+- **💡 Adaptive Patterns**: Machine learning from successful resolutions and workflows
 
 ## Quick Start
 
@@ -95,7 +107,9 @@ cp .env.example .env
 
 ## Available Tools
 
-### memory_search
+### Core Memory Tools
+
+#### memory_search
 Search through memories using semantic similarity matching.
 
 ```typescript
@@ -109,7 +123,7 @@ Search through memories using semantic similarity matching.
 }
 ```
 
-### memory_store
+#### memory_store
 Store new memory content with metadata and automatic categorization.
 
 ```typescript
@@ -125,7 +139,7 @@ Store new memory content with metadata and automatic categorization.
 }
 ```
 
-### memory_stats
+#### memory_stats
 Get comprehensive statistics about the memory database.
 
 ```typescript
@@ -144,7 +158,7 @@ Get comprehensive statistics about the memory database.
 }
 ```
 
-### memory_list
+#### memory_list
 List recent memories with optional filtering and pagination.
 
 ```typescript
@@ -156,7 +170,7 @@ List recent memories with optional filtering and pagination.
 }
 ```
 
-### memory_health
+#### memory_health
 Check memory server health, connectivity, and performance metrics.
 
 ```typescript
@@ -167,6 +181,224 @@ Check memory server health, connectivity, and performance metrics.
   "version": "1.0.0",
   "memoryCount": 792,
   "lastCheck": "2025-01-16T10:30:00Z"
+}
+```
+
+### Enhanced Orchestration Tools
+
+#### session_create
+Create hierarchical sessions with TTL strategy for multi-agent coordination.
+
+```typescript
+// Create orchestrator session
+{
+  "agentRole": "orchestrator",
+  "parentSessionId": null,
+  "initialState": {
+    "project": "memory-enhancement",
+    "priority": "high"
+  },
+  "ttl": 7200,
+  "specialization": ["coordination", "conflict-resolution"]
+}
+
+// Create child specialist session
+{
+  "agentRole": "specialist",
+  "parentSessionId": "session-12345-abc",
+  "initialState": {
+    "domain": "pattern-learning"
+  },
+  "ttl": 3600,
+  "specialization": ["machine-learning", "optimization"]
+}
+```
+
+#### agent_register
+Register agents with coordination system including role definition and performance tracking.
+
+```typescript
+// Register coordination agent
+{
+  "agentId": "coordinator-001",
+  "role": "coordinator",
+  "specialization": ["task-management", "agent-mediation", "workflow-optimization"]
+}
+
+// Register specialist agent
+{
+  "agentId": "specialist-ml-001",
+  "role": "specialist",
+  "specialization": ["machine-learning", "pattern-recognition", "data-analysis"]
+}
+```
+
+#### conflict_resolve
+3-tier intelligent conflict resolution with automatic escalation.
+
+```typescript
+// Resolve memory conflict
+{
+  "conflictType": "memory_conflict",
+  "involvedItems": ["memory-001", "memory-002"],
+  "severity": "medium",
+  "preferredStrategy": "similarity_merging",
+  "metadata": {
+    "context": "duplicate_detection",
+    "threshold": 0.85
+  }
+}
+
+// Resolve agent conflict
+{
+  "conflictType": "agent_conflict",
+  "involvedItems": ["agent-001", "agent-002"],
+  "severity": "high",
+  "metadata": {
+    "conflictReason": "task_assignment_overlap",
+    "priority": "urgent"
+  }
+}
+```
+
+#### pattern_learn
+Global pattern learning with reinforcement learning capabilities.
+
+```typescript
+// Learn workflow pattern
+{
+  "type": "workflow",
+  "context": {
+    "scenario": "code_review",
+    "complexity": "high",
+    "team_size": 5
+  },
+  "action": {
+    "strategy": "parallel_review",
+    "timeout": 3600,
+    "approval_threshold": 0.8
+  },
+  "applicableContexts": ["development", "code-quality", "team-coordination"]
+}
+
+// Learn optimization pattern
+{
+  "type": "optimization",
+  "context": {
+    "resource_type": "memory",
+    "usage_threshold": 0.9,
+    "performance_impact": "high"
+  },
+  "action": {
+    "cleanup_strategy": "lru_eviction",
+    "batch_size": 100,
+    "frequency": "hourly"
+  },
+  "applicableContexts": ["memory-management", "performance-tuning"]
+}
+```
+
+#### agent_coordinate
+Multi-agent coordination operations for task management.
+
+```typescript
+// Assign task to agent
+{
+  "operation": "assign_task",
+  "agentId": "specialist-001",
+  "data": {
+    "taskId": "pattern-analysis-001",
+    "priority": "high",
+    "deadline": "2025-01-20T15:00:00Z",
+    "requirements": ["machine-learning", "data-analysis"]
+  }
+}
+
+// Update agent status
+{
+  "operation": "update_status",
+  "agentId": "coordinator-001",
+  "data": {
+    "status": "active",
+    "currentTask": "conflict-mediation",
+    "availability": 0.7
+  }
+}
+```
+
+#### session_context
+Retrieve session context with hierarchy support and TTL validation.
+
+```typescript
+// Get session with hierarchy
+{
+  "sessionId": "session-12345-abc",
+  "includeHierarchy": true
+}
+
+// Returns session context with inherited state
+{
+  "success": true,
+  "session": {
+    "id": "session-12345-abc",
+    "agentRole": "specialist",
+    "hierarchyLevel": 1,
+    "state": {
+      // Inherited from parent + own state
+      "project": "memory-enhancement",
+      "priority": "high",
+      "domain": "pattern-learning"
+    },
+    "isActive": true,
+    "ttl": 3600,
+    "childSessions": ["session-67890-def"]
+  }
+}
+```
+
+#### orchestrator_stats
+Get comprehensive orchestration system statistics.
+
+```typescript
+// Returns orchestration metrics
+{
+  "success": true,
+  "stats": {
+    "activeSessions": 15,
+    "activeAgents": 8,
+    "activeConflicts": 2,
+    "learnedPatterns": 47,
+    "performanceMetrics": {
+      "patternsLearned": 47,
+      "patternsApplied": 156,
+      "conflictsResolved": 23,
+      "averageResolutionTime": 245
+    },
+    "agentPerformance": {
+      "orchestrator": { "successRate": 0.98, "tasksCompleted": 45 },
+      "specialists": { "successRate": 0.95, "tasksCompleted": 123 },
+      "coordinators": { "successRate": 0.97, "tasksCompleted": 67 }
+    }
+  }
+}
+```
+
+#### cleanup_sessions
+Manually trigger cleanup of expired sessions based on TTL.
+
+```typescript
+// Returns cleanup results
+{
+  "success": true,
+  "cleanedCount": 7,
+  "message": "Cleaned up 7 expired sessions",
+  "details": {
+    "expiredSessions": [
+      "session-old-001",
+      "session-old-002"
+    ],
+    "cleanupTime": "2025-01-16T10:30:00Z"
+  }
 }
 ```
 
