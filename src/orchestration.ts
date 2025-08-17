@@ -20,6 +20,8 @@ export class VPSMemoryOrchestrator {
   private agents: Map<string, AgentContext> = new Map();
   private conflicts: Map<string, ConflictRecord> = new Map();
   private patterns: Map<string, LearnedPattern> = new Map();
+  private cleanupInterval?: NodeJS.Timeout;
+  private learningInterval?: NodeJS.Timeout;
 
   constructor(client: VPSMemoryClient) {
     this.client = client;
@@ -550,7 +552,7 @@ export class VPSMemoryOrchestrator {
    */
   private setupConflictResolution(): void {
     // Setup automatic cleanup and monitoring
-    setInterval(() => {
+    this.cleanupInterval = setInterval(() => {
       this.cleanupExpiredSessions();
     }, 300000); // Every 5 minutes
   }
@@ -560,9 +562,21 @@ export class VPSMemoryOrchestrator {
    */
   private setupPatternLearning(): void {
     // Setup pattern learning automation
-    setInterval(() => {
+    this.learningInterval = setInterval(() => {
       this.analyzeAndLearnPatterns();
     }, 600000); // Every 10 minutes
+  }
+
+  /**
+   * Cleanup timers and resources
+   */
+  destroy(): void {
+    if (this.cleanupInterval) {
+      clearInterval(this.cleanupInterval);
+    }
+    if (this.learningInterval) {
+      clearInterval(this.learningInterval);
+    }
   }
 
   private async analyzeAndLearnPatterns(): Promise<void> {

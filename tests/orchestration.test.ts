@@ -34,6 +34,13 @@ describe('VPSMemoryOrchestrator', () => {
     orchestrator = new VPSMemoryOrchestrator(mockClient);
   });
 
+  afterEach(() => {
+    // Cleanup timers to prevent Jest from hanging
+    if (orchestrator) {
+      orchestrator.destroy();
+    }
+  });
+
   describe('Session Management', () => {
     test('should create orchestrator session', async () => {
       const session = await orchestrator.createSession('orchestrator', {

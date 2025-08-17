@@ -208,12 +208,22 @@ Environment Variables (REQUIRED):
   VPS_MEMORY_RETRY_ATTEMPTS   Retry attempts for failed requests (default: 3)
   VPS_MEMORY_RETRY_DELAY      Delay between retries in ms (default: 1000)
 
-Tools:
+Core Memory Tools:
   memory_search    Search memories using semantic similarity
   memory_store     Store new memory content with metadata
   memory_stats     Get memory database statistics
   memory_list      List recent memories with filtering
   memory_health    Check server health and connectivity
+
+Enhanced Orchestration Tools:
+  session_create      Create hierarchical sessions with TTL strategy
+  agent_register      Register agents with coordination system
+  conflict_resolve    3-tier intelligent conflict resolution
+  pattern_learn       Global pattern learning with reinforcement
+  agent_coordinate    Multi-agent coordination operations
+  session_context     Retrieve session context with hierarchy
+  orchestrator_stats  Get orchestration system statistics
+  cleanup_sessions    Manually trigger session cleanup
 
 Examples:
   # Start server
